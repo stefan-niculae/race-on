@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manual Control</title>
+
+  <script src="{{ url_for('static', filename='jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery-ui.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.ui.touch-punch.min.js') }}"></script>
+  <script>
+    CONTAINER_WIDTH = 300;
+    CONTAINER_HEIGHT = 200;
+    KNOB_RADIUS = 30;
+
+    TOP = 0;
+    BOTTOM = CONTAINER_HEIGHT - KNOB_RADIUS;
+    LEFT = 0;
+    RIGHT = CONTAINER_WIDTH - KNOB_RADIUS;
+
+    FPS = 5;  // updates per second
+
+    function per(s, a, b) {
+        let n = +s.substring(0, s.length - 2);  // cut the "px" at the end
+        return (n-a) / (b-a);
+    }
+
+    $(() => {
+        let container = $('#drag-container');
+        let knob = $('#knob');
+
+        container.width(CONTAINER_WIDTH);
+        container.height(CONTAINER_HEIGHT);
+        knob.width(KNOB_RADIUS);
+        knob.height(KNOB_RADIUS);
+
+        container.draggable();
+        knob.draggable({containment: 'parent'});
+
+        knob.css({
+            left: (CONTAINER_WIDTH - KNOB_RADIUS) / 2,
+            top: BOTTOM,
+        });
+
+        setInterval(() => {
+            $.get('/coords', {
+                speed: 1 - per(knob.css('top'), TOP, BOTTOM),
+                angle: 2 * per(knob.css('left'), LEFT, RIGHT) - 1,
+            })
+        }, 1000 / FPS);
+    });
+  </script>
+
+  <style>
+    * {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    #drag-container {
+      padding: 0;
+      background-color: #e6e6e6;
+    }
+
+    #knob {
+      border-radius: 50%;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="drag-container" class="ui-widget-content draggable">
+    <div id="knob" class="ui-widget-content draggable">
+    </div>
+  </div>
+
+  <p>
+    top/bottom = speed
+    <br>
+    left/right = turn
+  </p>
+</body>
+</html>
