@@ -60,13 +60,13 @@ class Controls:
         self.neutral()
 
         self.turn(LEFT)
-        time.sleep(1)
+        time.sleep(.5)
 
         self.turn(RIGHT)
-        time.sleep(1)
+        time.sleep(.5)
 
         self.turn(CENTER)
-        time.sleep(1)
+        time.sleep(.5)
 
         self.move(.15)
         time.sleep(1)
