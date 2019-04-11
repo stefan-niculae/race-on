@@ -2,6 +2,7 @@ from scipy.signal import find_peaks, butter, filtfilt
 from utils import interpolate_01
 from car_camera import RESOLUTION
 
+
 # resolution is 640 x 480
 HORIZONTAL_LINE = 240  # horizontal line at y=HORIZONTAL_LINE
 CENTER_X = RESOLUTION[0] / 2
@@ -30,6 +31,7 @@ class Processor:
         returns the speed and angle for this frame
         """
         guide_x = self.find_guide_pos(frame)
+        # print('guide_x = ', guide_x)  # DEBUG
         if guide_x is None:  # can't see the track guideline
             angle = self.current_angle
         else:

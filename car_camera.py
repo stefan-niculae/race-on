@@ -16,11 +16,16 @@ class Camera:
         self.camera.framerate = 120  # TODO why so many frames per second?
 
     def frames(self):
-        with PiYUVArray(self.camera, size=RESOLUTION) as raw_capture, \
-             self.camera.capture_continuous(raw_capture, format="yuv", use_video_port=True) as stream:
+        raw_capture = PiYUVArray(self.camera, size=RESOLUTION)
+        stream = self.camera.capture_continuous(raw_capture, format="yuv", use_video_port=True)
+
+        try:
             for frame in stream:
                 raw_capture.truncate(0)  # Reset the buffer for the next image
                 yield frame
-
+        except KeyboardInterrupt:
+            raw_capture.close()
+            stream.close()
+            print('Closed streams')
         # TODO check that it closes (reaches here) upon break
         # TODO do I also need to close the camera? (self.camera.close())

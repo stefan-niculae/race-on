@@ -39,7 +39,7 @@ class Controls:
               1 is full speed
         """
         speed = interpolate_01(STOP_DUTY, FASTEST_DUTY, speed)
-        self.motor.duty_cycle = speed
+        self.motor.duty_cycle = int(speed)
 
     def turn(self, angle):
         """
@@ -50,7 +50,7 @@ class Controls:
         """
         # -angle because LEFT_DUTY > RIGHT_DUTY but want -1 to mean LEFT
         angle = interpolate_pm1(LEFT_DUTY, RIGHT_DUTY, -angle)
-        self.servo.duty_cycle = angle
+        self.servo.duty_cycle = int(angle)
 
     def neutral(self):
         self.move(STOP)
@@ -72,6 +72,3 @@ class Controls:
         time.sleep(1)
 
         self.move(STOP)
-
-    def is_stopped(self):
-        return self.motor.duty_cycle <= STOP_DUTY * 1.01

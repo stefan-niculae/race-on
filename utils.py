@@ -13,11 +13,11 @@ def interpolate_01(a, b, per):
     if a > b:
         (a, b) = (b, a)
     per = clamp(per, 0, 1)
-    return int(a + (b - a) * per)
+    return a + (b - a) * per
 
 
 def interpolate_pm1(a, b, p):
     if a > b:
         (a, b) = (b, a)
     p = clamp(p, -1, +1)
-    return int(a + (b - a) * (.5 + p/2))
+    return a + (b - a) * (.5 + p/2)
