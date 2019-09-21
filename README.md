@@ -7,7 +7,7 @@ To start:
 2. Connect your laptop to the same Wifi as the Pi is connected to
    - Set the Pi's Wifi preferences thorugh SD card
 3. Log into the PI `ssh pi@raspberrypi-232.local`
-   - password: `fulbright`
+   - password: `Fight On!`
 4. Enter the virtual env `source raceon-venv/bin/activate`
 
 
