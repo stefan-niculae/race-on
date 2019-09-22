@@ -16,12 +16,12 @@ To start self-driving:
 
 1. Navigate to the repo's folder `cd ~/race-on`
 2. Start Jupyter `sudo -H /home/pi/raceon-venv/bin/jupyter lab --ip 0.0.0.0 --allow-root` if it requires root access
-3. Access http://raspberrypi-1013.local:8888
+3. Access http://raspberrypi-232.local:8888
    - copy the token from the console for login
 4. Open `self-drive.ipynb` and run the cells in order
 
 
 To control manually:
 1. `python manual_control.py`
-2. Access http://raspberrypi-1013.local:5000
+2. Access http://raspberrypi-232.local:5000
 3. Drag the knob (works on mobile)
