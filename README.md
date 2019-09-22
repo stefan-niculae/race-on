@@ -15,7 +15,7 @@ To start:
 To start self-driving:
 
 1. Navigate to the repo's folder `cd ~/race-on`
-2. Start Jupyter `sudo -H /home/pi/raceon-venv/bin/jupyter lab --ip 0.0.0.0 --allow-root` if it requires root access
+2. Start Jupyter `jupyter lab`
 3. Access http://raspberrypi-232.local:8000
    - password: `Fight On!`
 4. Open `self-drive.ipynb` and run the cells in order
